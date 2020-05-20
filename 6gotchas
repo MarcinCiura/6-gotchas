@@ -1,0 +1,107 @@
+#!/usr/bin/env expect
+
+set timeout 60
+stty -echo
+spawn "/usr/bin/python"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "def fun(lst=\[\]):\r    lst.append('spam')\r    return lst\r\r"
+expect ">>>"
+
+expect_user "\n"
+send "fun()\r"
+expect ">>>"
+
+expect_user "\n"
+send "fun()\r"
+expect ">>>"
+
+expect_user "\n"
+send "fun()\r"
+expect ">>>"
+send "\r"
+expect ">>>"
+
+expect_user "\n"
+send "for i in xrange(7):\r"
+expect "..."
+send "    try:\r"
+expect "..."
+send "        pass\r"
+expect "..."
+send "    finally:\r"
+expect "..."
+send "        continue\r"
+expect "..."
+expect_user "\n"
+send "\r"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "lst = \[lambda: x for x in xrange(7)\]\r"
+expect ">>>"
+
+expect_user "\n"
+send "\[f() for f in lst\]\r"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "class Node:\r    pass\r\r"
+expect ">>>"
+send "node = blue_node = Node()\r"
+expect ">>>"
+send "red_node = Node()\r"
+expect ">>>"
+send "\r"
+expect ">>>"
+
+expect_user "\n"
+send "node = node.next = red_node\r"
+expect ">>>"
+expect_user "\n"
+send "blue_node.next is red_node\r"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "''.split()\r"
+expect ">>>"
+
+expect_user "\n"
+send "''.split(' ')\r"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "tpl = (\['spam'\], 42)\r"
+expect ">>>"
+
+expect_user "\n"
+send "tpl\[0\] += \['eggs'\]\r"
+expect ">>>"
+
+expect_user "\n"
+send "tpl\r"
+expect ">>>"
+
+expect_user "\n"
+send "\r"
+expect ">>>"
+send "\r"
+expect ">>>"
+send "\r"
+expect ">>>"
+send "'Thats all, folks!'\r"
+expect ">>>"
+
+interact
+exit
